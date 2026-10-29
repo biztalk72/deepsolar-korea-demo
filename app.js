@@ -1,3 +1,4 @@
+import { initializeOfficialView, loadOfficialResults, updateOfficialScope } from './real-sample-view.js';
 import { SIZE, DATASET_VERSION, createDataset, degradeImage, predictMask, fingerprintDataset } from './ml-core.js';
 
 const $ = id => document.getElementById(id);
@@ -7,7 +8,7 @@ const originalMasks = new Map(dataset.tiles.map(tile => [tile.id, new Uint8Array
 const LABEL_KEY = 'deepsolar-browser-labels-v1';
 const RUN_KEY = 'deepsolar-browser-runs-v1';
 const splitNames = {train:'학습', validation:'검증', test:'평가'};
-const routeNames = {overview:'대시보드',review:'데이터 · 라벨 검수',experiments:'해상도 · 학습 실험',results:'모델 평가 · 비교'};
+const routeNames = {overview:'대시보드',review:'데이터 · 라벨 검수',experiments:'해상도 · 학습 실험',results:'모델 평가 · 비교',official:'공식 샘플 학습 결과'};
 const pendingMessages = [];
 let currentTileId = dataset.tiles[0].id;
 let splitFilter = 'all';
@@ -142,6 +143,8 @@ function route() {
   if(next==='review')renderReview();
   if(next==='experiments'){renderResolution();renderFingerprint();}
   if(next==='results')renderRuns();
+  updateOfficialScope(next);
+  if(next==='official')loadOfficialResults();
   window.scrollTo({top:0,behavior:'instant'});
 }
 function renderStats() {
@@ -322,6 +325,7 @@ function renderPrediction(){
 }
 function openGuide(){if(!$('guide-dialog').open)$('guide-dialog').showModal();}
 
+initializeOfficialView();
 loadState();
 setupTileOptions();renderHero();renderStats();renderReview();renderResolution();renderFingerprint();renderRuns();route();
 window.addEventListener('hashchange',route);

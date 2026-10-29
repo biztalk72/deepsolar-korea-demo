@@ -1,21 +1,29 @@
 {
   "schema": "deepsolar-pages-release-v1",
-  "source_commit": "48e3c835c73a580f3841bfe22c3cef74d3078a19",
-  "generated_at": "2026-10-29T06:07:23.379884+00:00",
-  "synthetic_only": true,
-  "model_kind": "browser_logistic_pixel_baseline",
+  "source_commit": "7915eeb1fd1ac9971c81b5ded56e84eaaa07880a",
+  "generated_at": "2026-10-29T06:55:26.363762+00:00",
+  "synthetic_only": false,
+  "browser_training_data": "synthetic_only",
+  "official_sample_results": true,
+  "korea_inventory_metadata": true,
+  "raw_real_imagery_included": false,
+  "modified_copernicus_preview_included": true,
+  "model_kinds": [
+    "browser_logistic_pixel_baseline",
+    "offline_frozen_resnet18_image_classifier"
+  ],
   "files": {
     "index.html": {
-      "sha256": "7c18240c6684442428b05c362ba908068f4546a5e2cca54fa39817a3eab7bcb4",
-      "bytes": 22582
+      "sha256": "730520515f7ab2974979c841e59be49e83b931b73d4dacc94ef41cf75e555583",
+      "bytes": 30294
     },
     "styles.css": {
-      "sha256": "d8b5becf0211311e0e306cb0045571e3c854aaa0e69ea8a706efd5c74fc5dc89",
-      "bytes": 35820
+      "sha256": "0a47fe2280d61bfb75c306cdaae618b6c50d612a215975c078df85f8705936e7",
+      "bytes": 45261
     },
     "app.js": {
-      "sha256": "2147fa783590f284d4a4daf863b37ba8328e8208ae4ed80eee1d1d365be274dd",
-      "bytes": 29420
+      "sha256": "25251aa309468eb6f01f9549ad89abf85f2ef1c7f6b02ef9f46dd0584d7f6084",
+      "bytes": 29666
     },
     "ml-core.js": {
       "sha256": "d4dffc477b4be1a4b1a1781e4f4b264552fdfc438b852242bbe5cc49b3cf8e6a",
@@ -25,13 +33,25 @@
       "sha256": "7fd78f7086883257952961904e00e8172052c01fea4b22fcec6785b086228f9e",
       "bytes": 522
     },
+    "real-sample-view.js": {
+      "sha256": "bf9375f789b6678d15999831b669cf4b106e62ac8eba7a72686558d7470eb979",
+      "bytes": 18463
+    },
+    "real-sample-results.json": {
+      "sha256": "ddfe2e6f8c38f86d3d0d37069b1e7458c3b44a5df5c45638f1cf6a95bf49058a",
+      "bytes": 21949
+    },
+    "korea-sentinel-preview.jpg": {
+      "sha256": "c49e410f58535388c38fb512dce4a6121db5682690fd660b58b7cfc0bf0bc2c7",
+      "bytes": 278622
+    },
     "icon.svg": {
       "sha256": "2ce7fa43b68593b3d4f4a3addd565da0d26a8f4dc37793cdbef9586b55038e59",
       "bytes": 307
     },
     "README.md": {
-      "sha256": "a966daca3eae1f282dcc2d846600052e5b1c8f565440da8ba8bb44a12de2d876",
-      "bytes": 3383
+      "sha256": "31d97b5d4f71162636ecf22c7a800e263d1bdcdf8c42eb5e447dcf2d807b023a",
+      "bytes": 5271
     },
     "LICENSE": {
       "sha256": "be8f5f473bb221cc24c7e3a0abd712b1b1694a7727f52546ca4dd4a8bbcd4b95",

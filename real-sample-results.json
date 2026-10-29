@@ -1,0 +1,659 @@
+{
+  "schema": "deepsolar-official-sample-results-v1",
+  "status": "completed",
+  "generated_at": "2026-10-29T06:36:53.326299+00:00",
+  "task": "image_level_pv_presence_classification",
+  "dataset": {
+    "title": "DeepSolar++ 공식 공개 HR 영상 예제",
+    "source_url": "https://github.com/wangzhecheng/DeepSolar_timelapse",
+    "repository_commit": "b9f0e0e81b901426a166f55a3ba6ab53ea260407",
+    "download_url": "https://opendatasharing.s3.us-west-2.amazonaws.com/DeepSolar2/data.zip",
+    "archive_sha256": "f3215a03caf552863f90d28459835b837bfc4a76658f920de42b592c6f4ef67d",
+    "dataset_fingerprint": "f352ccfac909611a7bfc3aa5e6c4e39b4230dffeaf357b680055970b829b31a0",
+    "split_counts": {
+      "train": {
+        "total": 4,
+        "positive": 2,
+        "negative": 2
+      },
+      "validation": {
+        "total": 4,
+        "positive": 2,
+        "negative": 2
+      },
+      "test": {
+        "total": 4,
+        "positive": 2,
+        "negative": 2
+      }
+    },
+    "total_available_images": 68,
+    "used_images": 12,
+    "image_size": [
+      600,
+      600
+    ],
+    "note": "원본 2018 DeepSolar 전체 데이터는 비공개이며, 후속 DeepSolar++ 저자가 공개한 실제 영상 예제12개를 사용했습니다. 폴더0/1은 영상 단위 태양광 유무입니다.",
+    "rights_note": "원자료의 재배포·상업 이용 범위는 별도 확인이 필요합니다. 이 공개 결과에는 원본 영상과 외부 가중치를 포함하지 않습니다.",
+    "leakage_note": "공식 train/val/test 분할을 유지했고 HR12개에 파일·decodedRGB 중복이 없습니다. GPS·촬영 위치가 없어 지리적 독립성은 검증하지 못했습니다."
+  },
+  "model": {
+    "name": "ResNet18 고정 특징 + 학습한 로지스틱 분류기",
+    "pretraining": "ImageNet-1K / torchvision ResNet18 IMAGENET1K_V1",
+    "input_size": 224,
+    "seed": 20261029,
+    "threshold": 0.5,
+    "selection_rule": "학습4장으로만 특징 평균·표준편차와 분류기 학습. L2[0.01,0.1,1,10] 중 검증4장 BCE 최소값 선택. 시험4장은 선택 후 평가.",
+    "epochs": 300,
+    "elapsed_seconds": 3.259915685001033,
+    "trainable_parameters": 513,
+    "frozen_encoder_parameters": 11176512,
+    "selected_l2": 0.01,
+    "optimizer": "Adam",
+    "learning_rate": 0.03,
+    "feature_count": 512,
+    "encoder_weights_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+    "encoder_weights_url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+    "preprocessing": "ImageNet weights default: resize shorter edge256 bilinear, center crop224, fixed ImageNet RGB mean/std",
+    "original_deepsolar_weights_used": false,
+    "backbone_finetuned": false
+  },
+  "metrics": {
+    "train": {
+      "n": 4,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "tn": 2,
+      "correct": 4,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy_ci95": [
+        0.5101091635454027,
+        1.0
+      ],
+      "accuracy_ci_method": "Wilson95",
+      "brier_score": 2.2812109039300025e-07,
+      "binary_cross_entropy": 0.0004715574001506028
+    },
+    "validation": {
+      "n": 4,
+      "tp": 2,
+      "fp": 1,
+      "fn": 0,
+      "tn": 1,
+      "correct": 3,
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "accuracy_ci95": [
+        0.30064184258240184,
+        0.9544127391902995
+      ],
+      "accuracy_ci_method": "Wilson95",
+      "brier_score": 0.12264517576701547,
+      "binary_cross_entropy": 0.37647799067379994
+    },
+    "test": {
+      "n": 4,
+      "tp": 2,
+      "fp": 1,
+      "fn": 0,
+      "tn": 1,
+      "correct": 3,
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "accuracy_ci95": [
+        0.30064184258240184,
+        0.9544127391902995
+      ],
+      "accuracy_ci_method": "Wilson95",
+      "brier_score": 0.18557893230188618,
+      "binary_cross_entropy": 0.5166810470574992
+    }
+  },
+  "resolution_stress": [
+    {
+      "factor": 1,
+      "metrics": {
+        "n": 4,
+        "tp": 2,
+        "fp": 1,
+        "fn": 0,
+        "tn": 1,
+        "correct": 3,
+        "accuracy": 0.75,
+        "balanced_accuracy": 0.75,
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1": 0.8,
+        "accuracy_ci95": [
+          0.30064184258240184,
+          0.9544127391902995
+        ],
+        "accuracy_ci_method": "Wilson95",
+        "brier_score": 0.18557893230188618,
+        "binary_cross_entropy": 0.5166810470574992
+      },
+      "effective_original_grid": [
+        600,
+        600
+      ]
+    },
+    {
+      "factor": 2,
+      "metrics": {
+        "n": 4,
+        "tp": 2,
+        "fp": 1,
+        "fn": 0,
+        "tn": 1,
+        "correct": 3,
+        "accuracy": 0.75,
+        "balanced_accuracy": 0.75,
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1": 0.8,
+        "accuracy_ci95": [
+          0.30064184258240184,
+          0.9544127391902995
+        ],
+        "accuracy_ci_method": "Wilson95",
+        "brier_score": 0.19588066442184365,
+        "binary_cross_entropy": 0.5636369128844789
+      },
+      "effective_original_grid": [
+        300,
+        300
+      ]
+    },
+    {
+      "factor": 4,
+      "metrics": {
+        "n": 4,
+        "tp": 2,
+        "fp": 1,
+        "fn": 0,
+        "tn": 1,
+        "correct": 3,
+        "accuracy": 0.75,
+        "balanced_accuracy": 0.75,
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1": 0.8,
+        "accuracy_ci95": [
+          0.30064184258240184,
+          0.9544127391902995
+        ],
+        "accuracy_ci_method": "Wilson95",
+        "brier_score": 0.22411921932164028,
+        "binary_cross_entropy": 0.7401821406057444
+      },
+      "effective_original_grid": [
+        150,
+        150
+      ]
+    },
+    {
+      "factor": 8,
+      "metrics": {
+        "n": 4,
+        "tp": 2,
+        "fp": 2,
+        "fn": 0,
+        "tn": 0,
+        "correct": 2,
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "accuracy_ci95": [
+          0.15003898915214947,
+          0.8499610108478506
+        ],
+        "accuracy_ci_method": "Wilson95",
+        "brier_score": 0.40074772118982327,
+        "binary_cross_entropy": 2.2333109424480986
+      },
+      "effective_original_grid": [
+        75,
+        75
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "sample_id": "HR_images/test/0/demo1.png",
+      "split": "test",
+      "label": 0,
+      "probability": 0.0795465989728805,
+      "prediction": 0,
+      "factor": 1,
+      "source_relative_path": "data/HR_images/test/0/demo1.png",
+      "image_sha256": "57fe696581aa92498840a25be84b01737d74fcff034a58a33716e8a06fbbe71d"
+    },
+    {
+      "sample_id": "HR_images/test/0/demo2.png",
+      "split": "test",
+      "label": 0,
+      "probability": 0.8575441452052297,
+      "prediction": 1,
+      "factor": 1,
+      "source_relative_path": "data/HR_images/test/0/demo2.png",
+      "image_sha256": "316ae3b7693955f6fcf8bbc450964febf5acac406eb755c38f95eea731322409"
+    },
+    {
+      "sample_id": "HR_images/test/1/demo1.png",
+      "split": "test",
+      "label": 1,
+      "probability": 0.9830409601225287,
+      "prediction": 1,
+      "factor": 1,
+      "source_relative_path": "data/HR_images/test/1/demo1.png",
+      "image_sha256": "fd102deb5cb3fc52fc8edce686967cde9d12f96784d9ed835b0905e960e783cf"
+    },
+    {
+      "sample_id": "HR_images/test/1/demo2.png",
+      "split": "test",
+      "label": 1,
+      "probability": 0.9821534936175503,
+      "prediction": 1,
+      "factor": 1,
+      "source_relative_path": "data/HR_images/test/1/demo2.png",
+      "image_sha256": "a6e858d98e835a0cf94a6c1f501bcfee6adf73aa8ecece21247c2855a3918051"
+    },
+    {
+      "sample_id": "HR_images/test/0/demo1.png",
+      "split": "test",
+      "label": 0,
+      "probability": 0.09804466378592219,
+      "prediction": 0,
+      "factor": 2,
+      "source_relative_path": "data/HR_images/test/0/demo1.png",
+      "image_sha256": "57fe696581aa92498840a25be84b01737d74fcff034a58a33716e8a06fbbe71d"
+    },
+    {
+      "sample_id": "HR_images/test/0/demo2.png",
+      "split": "test",
+      "label": 0,
+      "probability": 0.8792441595357814,
+      "prediction": 1,
+      "factor": 2,
+      "source_relative_path": "data/HR_images/test/0/demo2.png",
+      "image_sha256": "316ae3b7693955f6fcf8bbc450964febf5acac406eb755c38f95eea731322409"
+    },
+    {
+      "sample_id": "HR_images/test/1/demo1.png",
+      "split": "test",
+      "label": 1,
+      "probability": 0.9903904755805563,
+      "prediction": 1,
+      "factor": 2,
+      "source_relative_path": "data/HR_images/test/1/demo1.png",
+      "image_sha256": "fd102deb5cb3fc52fc8edce686967cde9d12f96784d9ed835b0905e960e783cf"
+    },
+    {
+      "sample_id": "HR_images/test/1/demo2.png",
+      "split": "test",
+      "label": 1,
+      "probability": 0.9726638233629922,
+      "prediction": 1,
+      "factor": 2,
+      "source_relative_path": "data/HR_images/test/1/demo2.png",
+      "image_sha256": "a6e858d98e835a0cf94a6c1f501bcfee6adf73aa8ecece21247c2855a3918051"
+    },
+    {
+      "sample_id": "HR_images/test/0/demo1.png",
+      "split": "test",
+      "label": 0,
+      "probability": 0.10436622669882206,
+      "prediction": 0,
+      "factor": 4,
+      "source_relative_path": "data/HR_images/test/0/demo1.png",
+      "image_sha256": "57fe696581aa92498840a25be84b01737d74fcff034a58a33716e8a06fbbe71d"
+    },
+    {
+      "sample_id": "HR_images/test/0/demo2.png",
+      "split": "test",
+      "label": 0,
+      "probability": 0.9408264462362885,
+      "prediction": 1,
+      "factor": 4,
+      "source_relative_path": "data/HR_images/test/0/demo2.png",
+      "image_sha256": "316ae3b7693955f6fcf8bbc450964febf5acac406eb755c38f95eea731322409"
+    },
+    {
+      "sample_id": "HR_images/test/1/demo1.png",
+      "split": "test",
+      "label": 1,
+      "probability": 0.9975941722555604,
+      "prediction": 1,
+      "factor": 4,
+      "source_relative_path": "data/HR_images/test/1/demo1.png",
+      "image_sha256": "fd102deb5cb3fc52fc8edce686967cde9d12f96784d9ed835b0905e960e783cf"
+    },
+    {
+      "sample_id": "HR_images/test/1/demo2.png",
+      "split": "test",
+      "label": 1,
+      "probability": 0.9793995614980794,
+      "prediction": 1,
+      "factor": 4,
+      "source_relative_path": "data/HR_images/test/1/demo2.png",
+      "image_sha256": "a6e858d98e835a0cf94a6c1f501bcfee6adf73aa8ecece21247c2855a3918051"
+    },
+    {
+      "sample_id": "HR_images/test/0/demo1.png",
+      "split": "test",
+      "label": 0,
+      "probability": 0.7772825898964841,
+      "prediction": 1,
+      "factor": 8,
+      "source_relative_path": "data/HR_images/test/0/demo1.png",
+      "image_sha256": "57fe696581aa92498840a25be84b01737d74fcff034a58a33716e8a06fbbe71d"
+    },
+    {
+      "sample_id": "HR_images/test/0/demo2.png",
+      "split": "test",
+      "label": 0,
+      "probability": 0.9994045913566605,
+      "prediction": 1,
+      "factor": 8,
+      "source_relative_path": "data/HR_images/test/0/demo2.png",
+      "image_sha256": "316ae3b7693955f6fcf8bbc450964febf5acac406eb755c38f95eea731322409"
+    },
+    {
+      "sample_id": "HR_images/test/1/demo1.png",
+      "split": "test",
+      "label": 1,
+      "probability": 0.9974426114535098,
+      "prediction": 1,
+      "factor": 8,
+      "source_relative_path": "data/HR_images/test/1/demo1.png",
+      "image_sha256": "fd102deb5cb3fc52fc8edce686967cde9d12f96784d9ed835b0905e960e783cf"
+    },
+    {
+      "sample_id": "HR_images/test/1/demo2.png",
+      "split": "test",
+      "label": 1,
+      "probability": 0.9974343144861272,
+      "prediction": 1,
+      "factor": 8,
+      "source_relative_path": "data/HR_images/test/1/demo2.png",
+      "image_sha256": "a6e858d98e835a0cf94a6c1f501bcfee6adf73aa8ecece21247c2855a3918051"
+    }
+  ],
+  "resolution_note": "학습 모델을 고정하고 원본600×600을300/150/75 픽셀로 면적평균 축소 후 최근접 확대해 시험했습니다. 이후 동일한256resize·224center crop을 적용했습니다. 실제GSD·센서모델이나 저해상도 재학습 성능은 아닙니다.",
+  "validation_selection": {
+    "selected_at": "2026-10-29T06:36:52.876765+00:00",
+    "candidates": [
+      {
+        "l2": 0.01,
+        "validation_bce": 0.37647799067379994,
+        "validation_metrics": {
+          "n": 4,
+          "tp": 2,
+          "fp": 1,
+          "fn": 0,
+          "tn": 1,
+          "correct": 3,
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "accuracy_ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ],
+          "accuracy_ci_method": "Wilson95",
+          "brier_score": 0.12264517576701547,
+          "binary_cross_entropy": 0.37647799067379994
+        },
+        "train_loss_first": 0.0017662980906393083,
+        "train_loss_last": 0.00047155740015057164
+      },
+      {
+        "l2": 0.1,
+        "validation_bce": 0.4013673505936347,
+        "validation_metrics": {
+          "n": 4,
+          "tp": 2,
+          "fp": 1,
+          "fn": 0,
+          "tn": 1,
+          "correct": 3,
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "accuracy_ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ],
+          "accuracy_ci_method": "Wilson95",
+          "brier_score": 0.131213224484403,
+          "binary_cross_entropy": 0.4013673505936347
+        },
+        "train_loss_first": 0.0017662980906393083,
+        "train_loss_last": 0.0035162867824366367
+      },
+      {
+        "l2": 1,
+        "validation_bce": 0.43426223735824765,
+        "validation_metrics": {
+          "n": 4,
+          "tp": 2,
+          "fp": 1,
+          "fn": 0,
+          "tn": 1,
+          "correct": 3,
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "accuracy_ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ],
+          "accuracy_ci_method": "Wilson95",
+          "brier_score": 0.14497373248760162,
+          "binary_cross_entropy": 0.43426223735824765
+        },
+        "train_loss_first": 0.0017662980906393083,
+        "train_loss_last": 0.023483462911885817
+      },
+      {
+        "l2": 10,
+        "validation_bce": 0.48569280971165074,
+        "validation_metrics": {
+          "n": 4,
+          "tp": 2,
+          "fp": 1,
+          "fn": 0,
+          "tn": 1,
+          "correct": 3,
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "accuracy_ci95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ],
+          "accuracy_ci_method": "Wilson95",
+          "brier_score": 0.16301335384945373,
+          "binary_cross_entropy": 0.48569280971165074
+        },
+        "train_loss_first": 0.0017662980906393083,
+        "train_loss_last": 0.13017189473652443
+      }
+    ],
+    "test_access_during_selection": false
+  },
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_bce": 0.0017662980906393083,
+      "objective": 0.00407029749682633
+    },
+    {
+      "epoch": 25,
+      "train_bce": 7.554323442176717e-14,
+      "objective": 0.056890907830658026
+    },
+    {
+      "epoch": 50,
+      "train_bce": 6.878830552410786e-13,
+      "objective": 0.043422695541221315
+    },
+    {
+      "epoch": 75,
+      "train_bce": 7.294293171452691e-11,
+      "objective": 0.02714328777955192
+    },
+    {
+      "epoch": 100,
+      "train_bce": 6.597254056820591e-09,
+      "objective": 0.016205128369215567
+    },
+    {
+      "epoch": 125,
+      "train_bce": 3.420947648916235e-07,
+      "objective": 0.009390165459214124
+    },
+    {
+      "epoch": 150,
+      "train_bce": 9.514126625465238e-06,
+      "objective": 0.005303561460617724
+    },
+    {
+      "epoch": 175,
+      "train_bce": 0.00011585943362436099,
+      "objective": 0.0030749061564025824
+    },
+    {
+      "epoch": 200,
+      "train_bce": 0.00046497326475375455,
+      "objective": 0.002404950932318443
+    },
+    {
+      "epoch": 225,
+      "train_bce": 0.0004665899471710982,
+      "objective": 0.0023280726170621093
+    },
+    {
+      "epoch": 250,
+      "train_bce": 0.000457975725337744,
+      "objective": 0.002305374272829888
+    },
+    {
+      "epoch": 275,
+      "train_bce": 0.00047196270292306863,
+      "objective": 0.002297382028610656
+    },
+    {
+      "epoch": 300,
+      "train_bce": 0.00047155740015057164,
+      "objective": 0.002294374948199823
+    }
+  ],
+  "protocol": {
+    "schema": "deepsolar-sample-protocol-v1",
+    "declared_at": "2026-10-29T15:36:35.066043+09:00",
+    "task": "image_level_pv_presence_classification",
+    "dataset": "official_DeepSolar++_HR_demo_samples",
+    "splits": "preserve_official_train_val_test",
+    "expected_split_counts": {
+      "train": 4,
+      "validation": 4,
+      "test": 4
+    },
+    "encoder": "torchvision_resnet18_imagenet1k_v1_frozen",
+    "encoder_url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+    "input_preprocessing": "ImageNet weights default: resize shorter edge256 bilinear, center crop224, fixed ImageNet RGB mean/std",
+    "input_size": 224,
+    "feature_normalization": "mean and population standard deviation from train only; std floor0.05",
+    "head": "512_features_plus_bias_binary_logistic",
+    "seed": 20261029,
+    "optimizer": "Adam",
+    "learning_rate": 0.03,
+    "epochs": 300,
+    "l2_grid": [
+      0.01,
+      0.1,
+      1,
+      10
+    ],
+    "selection_rule": "minimum final validation binary cross-entropy; exact tie selects stronger regularization",
+    "threshold": 0.5,
+    "augmentation": "none",
+    "resolution_factors": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "resolution_method": "original600x600 area-averaged to600/factor then nearest enlarged to600 before fixed encoder preprocessing",
+    "test_access": "test features and predictions computed only after model selection; no test-based retuning",
+    "confidence_interval": "two-sided Wilson95 for image classification accuracy",
+    "operational_scope": "research demo of12 real author-shared images; not Korean evaluation or original DeepSolar reproduction"
+  },
+  "protocol_sha256": "9029cadcc4015fa7b6c85cd7e16bb52ee6889409ec7400179a77aec13e6ec321",
+  "checkpoint": {
+    "sha256": "3622420638cdf3bcc1f43294ee6e26a8d00ab5b3251fa7f5312ad931caf7cca6",
+    "format": "deepsolar-official-sample-resnet18-head-v1",
+    "weights_only_load_supported": true
+  },
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.1+cpu",
+    "numpy": "2.3.5",
+    "device": "cpu",
+    "threads": 4,
+    "deterministic_algorithms": true
+  },
+  "limitations": [
+    "시험 영상은 양성2장·음성2장, 총4장뿐입니다. 한 장이 바뀌면 정확도가25%p 바뀝니다.",
+    "95% 구간은 영상 분류 정확도의 Wilson 구간이며 F1 구간이나 한국 지역 일반화 구간이 아닙니다.",
+    "지리적 위치·촬영시점·GSD 정보가 충분하지 않아 공간·시점 독립성을 입증할 수 없습니다.",
+    "영상 단위 태양광 유무 분류입니다. 패널 마스크·면적·개수·발전량을 학습하거나 평가하지 않았습니다.",
+    "원본 DeepSolar 모델이나 논문 재현 실험이 아니라, 저자 공개 예제를 사용한 독립 전이학습 기능 검증입니다.",
+    "모델과 임계값을 시험 결과로 다시 선택하지 않았습니다. 축소 조건은 사전에 지정한 입력 열화 시험입니다.",
+    "한국 영상으로 학습하거나 한국 실영상 정확도를 검증한 결과가 아닙니다."
+  ],
+  "korea_data": {
+    "title": "한국 공개 위성영상 수집·라벨 준비",
+    "summary": "Sentinel-2 한국 장면 34개에서 RGB 10m와 SCL 20m 파일 136개, 18.57GB를 확보했습니다. 2026년 저운량 후보 910개 중 MGRS 격자별 최근 장면을 선택했습니다. 전 기간의 모든 한국 영상은 아닙니다. NIR는 이번 수집에 포함하지 않았습니다. 좌표를 보존한 미라벨 타일 5,554개를 색인하고 검수용 이미지 66개를 준비했습니다. 구름·그림자로 유효 타일이 없던 52SFG 셀은 2026-10-15 관측을 별도로 확보해 윈도 8개와 검수 이미지 2개를 보충했습니다. 합계는 35장면·140파일·19.06GB, 미라벨 윈도 5,562개·검수 이미지 68개입니다.",
+    "status": "원본 다운로드 및 미라벨 전처리 완료",
+    "image_count": 35,
+    "label_status": "태양광 정답 미확보 · 초기 마스크 255(미확인)",
+    "training_ready": false,
+    "trained": false,
+    "source_url": "https://registry.opendata.aws/sentinel-2-l2a-cogs/",
+    "downloaded_files": 140,
+    "downloaded_bytes": 19064619772,
+    "all_historical_imagery_downloaded": false,
+    "source_footprint_coverage_ratio": 0.9980315101585325,
+    "coverage_caveat": "STAC footprint overlap with the stated boundary; does not guarantee cloud-free pixel coverage or coverage outside that boundary.",
+    "attribution": "Copernicus Sentinel data 2026; source: ESA/Copernicus, distributed by Element 84 Earth Search. Boundary: geoBoundaries.",
+    "indexed_unlabeled_tiles": 5562,
+    "annotation_review_images": 68,
+    "primary_snapshot_scenes": 34,
+    "primary_snapshot_files": 136,
+    "quality_recovery_scene": "S2B_T52SFG_20261015T021246_L2A"
+  }
+}
