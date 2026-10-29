@@ -1,0 +1,45 @@
+{
+  "schema": "deepsolar-pages-release-v1",
+  "source_commit": "48e3c835c73a580f3841bfe22c3cef74d3078a19",
+  "generated_at": "2026-10-29T06:07:23.379884+00:00",
+  "synthetic_only": true,
+  "model_kind": "browser_logistic_pixel_baseline",
+  "files": {
+    "index.html": {
+      "sha256": "7c18240c6684442428b05c362ba908068f4546a5e2cca54fa39817a3eab7bcb4",
+      "bytes": 22582
+    },
+    "styles.css": {
+      "sha256": "d8b5becf0211311e0e306cb0045571e3c854aaa0e69ea8a706efd5c74fc5dc89",
+      "bytes": 35820
+    },
+    "app.js": {
+      "sha256": "2147fa783590f284d4a4daf863b37ba8328e8208ae4ed80eee1d1d365be274dd",
+      "bytes": 29420
+    },
+    "ml-core.js": {
+      "sha256": "d4dffc477b4be1a4b1a1781e4f4b264552fdfc438b852242bbe5cc49b3cf8e6a",
+      "bytes": 15853
+    },
+    "training-worker.js": {
+      "sha256": "7fd78f7086883257952961904e00e8172052c01fea4b22fcec6785b086228f9e",
+      "bytes": 522
+    },
+    "icon.svg": {
+      "sha256": "2ce7fa43b68593b3d4f4a3addd565da0d26a8f4dc37793cdbef9586b55038e59",
+      "bytes": 307
+    },
+    "README.md": {
+      "sha256": "a966daca3eae1f282dcc2d846600052e5b1c8f565440da8ba8bb44a12de2d876",
+      "bytes": 3383
+    },
+    "LICENSE": {
+      "sha256": "be8f5f473bb221cc24c7e3a0abd712b1b1694a7727f52546ca4dd4a8bbcd4b95",
+      "bytes": 1093
+    },
+    ".nojekyll": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}
